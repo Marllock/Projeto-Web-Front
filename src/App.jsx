@@ -2,7 +2,7 @@
 import Main from './pages/Main';
 import './styles/App.scss'
 
-import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom'
+import { HashRouter as Router, Route, Routes, } from 'react-router-dom'
 import Monster from './pages/Monster';
 import Post from './pages/Post';
 import { ToastContainer } from 'react-toastify';
