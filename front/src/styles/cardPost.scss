@@ -1,0 +1,48 @@
+.card-publi {
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 50px;
+  padding-bottom: 50px;
+  border-radius: 1rem;
+}
+
+img {
+  max-height: 300px;
+  max-width: 500px;
+}
+.api-block {
+  height: 100vh;
+
+  .search-bar {
+    height: 10vh;
+    .search-container {
+      width: fit-content;
+      align-items: center;
+      margin: 40px auto;
+
+      input {
+        width: 40vw;
+        padding: 0.7rem;
+        margin-right: 10px;
+        border-radius: 4px;
+        // border: unset;
+        outline-color: #0672cb;
+      }
+
+      .monster-button {
+        margin-left: 10px;
+        padding: 0.7rem;
+        outline: none;
+        background-color: #0672cb;
+        color: #fff;
+        border: unset;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    }
+  }
+}
