@@ -54,7 +54,10 @@ function Login({ login }) {
         }).then(response => {
             const token = response.data.token;
             setCookies('token', token)
-            setCookies('email', emailInput)
+            setCookies('id', response.data.id)
+        }).catch(e => {
+            console.log(e.message)
+            return
         })
 
         navigate('/monsters')

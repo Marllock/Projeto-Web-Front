@@ -40,7 +40,6 @@ function Weaknesses({ monster }) {
 
 //#######################################################
 function MonsterTemplate({ monster }) {
-    console.log(monster)
     if (monster !== null) {
         return (
             <div className="monster">

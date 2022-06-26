@@ -2,7 +2,7 @@ import api from "../services/api";
 import { useState } from 'react';
 import { useCookies } from "react-cookie";
 
-function RegisterPost() {
+function RegisterPost({ setPosts, posts }) {
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
     const [file, setFile] = useState('')
@@ -14,6 +14,7 @@ function RegisterPost() {
         formData.append('title', title)
         formData.append('text', text)
         formData.append('file', file)
+        formData.append('id', cookies.id)
 
         e.preventDefault()
         api.post('/posts', formData, {
@@ -22,6 +23,7 @@ function RegisterPost() {
                 "Content-Type": 'multipart/form-data'
             }
         })
+        setPosts(posts + 1)
     }
 
     return (
