@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/Projeto-Web-Front/static/css/main.86489933.css",
+    "main.js": "/Projeto-Web-Front/static/js/main.a0b7ffcc.js",
+    "static/media/img-dell.png": "/Projeto-Web-Front/static/media/img-dell.41759821add612f8ed05.png",
+    "static/media/global.png": "/Projeto-Web-Front/static/media/global.a2ee78de3f42067272f5.png",
+    "static/media/user.png": "/Projeto-Web-Front/static/media/user.f5a52c39c659d7beb490.png",
+    "static/media/search.png": "/Projeto-Web-Front/static/media/search.6b3bac6508bb3fb19402.png",
+    "index.html": "/Projeto-Web-Front/index.html",
+    "static/media/menu-burger.svg": "/Projeto-Web-Front/static/media/menu-burger.7e853c0a5ab48acf91c0582f7c6756bf.svg",
+    "main.86489933.css.map": "/Projeto-Web-Front/static/css/main.86489933.css.map",
+    "main.a0b7ffcc.js.map": "/Projeto-Web-Front/static/js/main.a0b7ffcc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.86489933.css",
+    "static/js/main.a0b7ffcc.js"
+  ]
+}
