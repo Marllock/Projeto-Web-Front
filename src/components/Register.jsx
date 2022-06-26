@@ -61,9 +61,10 @@ function Register({ login }) {
         }).then(response => {
             const token = response.token;
             setCookies('token', token)
-            setCookies('email', emailInput)
+            setCookies('id', response.data.id)
         }).catch((e) => {
             console.log(e.message)
+            return
         })
         navigate('/monsters')
     }
