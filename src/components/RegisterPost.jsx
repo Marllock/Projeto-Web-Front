@@ -17,7 +17,7 @@ function RegisterPost({ setPosts, posts }) {
         formData.append('id', cookies.id)
 
         e.preventDefault()
-        api.post('/posts', formData, {
+        api.post('/anime', formData, {
             headers: {
                 'Authorization': `Bearer ${cookies.token}`,
                 "Content-Type": 'multipart/form-data'

@@ -7,9 +7,6 @@ import { ToastContainer } from 'react-toastify';
 function ModalComponent({ setOpenModal }) {
     const [isLogin, setLogin] = useState(true)
 
-    useEffect(() => {
-        console.log(isLogin)
-    })
     return (
         <div className="modalBackground">
             <div className="modalContainer">

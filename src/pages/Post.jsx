@@ -1,62 +1,85 @@
+import React, { useState } from "react";
+import api from "../services/api";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from 'react-cookie'
+import '../styles/post.scss'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import RegisterPost from './../components/RegisterPost';
-import SearchPost from './../components/SearchPost';
-import { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
-import api from '../services/api';
 
-function Post() {
-    const [post, setPost] = useState('')
-    const [requestedPost, setRequestedPost] = useState({})
-    const [numberViews, setNumberViews] = useState(0)
-    const [postsCreated, setPostsCreated] = useState(0)
-    const [cookies, setCookies] = useCookies(['token']);
-
-    useEffect(() => {
-        setCookies('numberViews', numberViews)
-        setCookies('postsCreated', postsCreated)
-
-    }, [numberViews, postsCreated])
-
-    async function handleSubmit(e) {
-        e.preventDefault()
-
-        const postReturn = await api.get('/posts', {
-            params: {
-                title: post,
-                id: cookies.id
-            },
-            headers: {
-                'Authorization': `Bearer ${cookies.token}`
+const Post = () => {
+    const [animeName, setAnimeName] = useState("");
+    const [animeDescription, setAnimeDescription] = useState("");
+    const navigate = useNavigate();
+    const [cookies, setCookie] = useCookies(['token']);
+    const handlePost = async () => {
+        try {
+            if(!animeName || !animeDescription ) {
+                toast.error('All fields must be filled',  {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: undefined,
+                    theme: "colored"
+                })
             }
-        })
-        setRequestedPost(postReturn)
-        setNumberViews(numberViews + 1)
-    }
+            
+            const response = await api.post('/anime', {
+                animeName,
+                animeDescription,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${cookies.token}`,
+                }
+            })
+            
+            if(response.status === 201) {
+                toast.success('anime registered successfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    draggable: false,
+                    progress: undefined,
+                    theme: "light"
+        });
+    } 
+    
+    navigate('/monster');
+} catch(e) {
+    toast.error('Failed to register anime',  {
+        position: "top-right",
+        autoClose: 5000,
+        draggable: false,
+        progress: undefined,
+        theme: "colored"
+    })
+}
+}
 
-    function HandleSearch() {
-        if (requestedPost !== {} && requestedPost !== undefined && requestedPost !== null) {
-            return (
-                <SearchPost post={requestedPost.data} />
-            )
-        }
-    }
-    return (
-        // Temporário
-        <div className="api-block">
-            <header className="search-bar">
-                <form className="search-container" onSubmit={handleSubmit}>
-                    <input className="monster-input" type="text" placeholder="Digite o nome da criatura a ser buscada" onChange={e => setPost(e.target.value)} value={post} />
-                    <button type='submit' className="monster-button">SEARCH</button>
-                    <p className='post-view'>Número de visualizações: {numberViews}</p>
-                    <p className='post-view'>Quantidade de posts Criados: {postsCreated}</p>
-                </form>
-            </header>
-
-            <RegisterPost setPosts={setPostsCreated} posts={postsCreated} />
-            <HandleSearch />
-        </div>
-    );
+return (
+    <div className="containerPublication">
+    <p className="label">Publicação de anime</p>
+    <div className="content">
+    <ToastContainer />
+      <input className="input"
+        type="text"
+        placeholder="Digite o nome do anime"
+        value={animeName}
+        onChange={(e) => [setAnimeName(e.target.value)]}
+        />
+       
+      <input className="input"
+        type="text"
+        placeholder="Digite a descrição"
+        value={animeDescription}
+        onChange={(e) => [setAnimeDescription(e.target.value)]}
+        />
+      <button className="button" onClick={handlePost}>Cadastrar</button>
+    </div>
+  </div>
+);
 }
 
 export default Post;

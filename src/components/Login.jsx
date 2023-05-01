@@ -3,6 +3,9 @@ import { useCookies } from 'react-cookie'
 import api from '../services/api'
 import '../styles/modal.scss'
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Login({ login }) {
     const [emailInput, setEmailInput] = useState('')
@@ -44,32 +47,40 @@ function Login({ login }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(emailInput)
         validateEmail();
         validatePassword();
 
-        api.post('users/login', {
+        api.post('/login', {
             email: emailInput,
             password: passwordInput
         }).then(response => {
             const token = response.data.token;
             setCookies('token', token)
             setCookies('id', response.data.id)
+            navigate('/monsters')
         }).catch(e => {
-            console.log(e.message)
+            toast.error(e.response.data.message,  {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: undefined,
+                theme: "colored"
+                })
             return
         })
 
-        navigate('/monsters')
     }
 
     const handleRegister = () => {
-        console.log(`teste`);
         login(false);
     }
 
     return (
         <main className="login">
+            <ToastContainer />
             <div className="login-container">
                 <form className="login-form" onSubmit={handleSubmit}>
 
