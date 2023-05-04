@@ -1,7 +1,6 @@
 import "../styles/monster.scss";
 import api from "./../services/api";
 import { useState } from "react";
-import { useCookies } from "react-cookie";
 import '../styles/post.scss'
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,14 +9,13 @@ import "react-toastify/dist/ReactToastify.css";
 function Monster() {
   const [search, setSearch] = useState("");
   const [animeList, setAnimeList] = useState([]);
-  const [cookies] = useCookies(["token"]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await api.get("/anime", {
         headers: {
-          Authorization: `Bearer ${cookies.token}`,
+          Authorization: `Bearer ${localStorage.getItem.token}`,
         },
         params: {
           search,
