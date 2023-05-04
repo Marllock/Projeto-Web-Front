@@ -52,11 +52,12 @@ function Login({ login }) {
             email: emailInput,
             password: passwordInput
         }).then(response => {
-            const token = response.data.token;
-            localStorage.setitem('token', token)
-            localStorage.setitem('id', response.data.id)
+            console.log(response)
+            const token = response.data.accessToken;
+            localStorage.setItem('token', token)
             navigate('/monsters')
         }).catch(e => {
+            console.log(e)
             toast.error(e.response.data.message,  {
                 position: "top-right",
                 autoClose: 5000,
