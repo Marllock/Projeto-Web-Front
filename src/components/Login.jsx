@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useCookies } from 'react-cookie'
 import api from '../services/api'
 import '../styles/modal.scss'
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +11,6 @@ function Login({ login }) {
     const [passwordInput, setPasswordInput] = useState('')
     const [passwordValidated, setPasswordValidated] = useState(true)
     const [emailValidated, setEmailValidated] = useState(true)
-    const [cookies, setCookies] = useCookies();
 
     const navigate = useNavigate();
 
@@ -55,8 +53,8 @@ function Login({ login }) {
             password: passwordInput
         }).then(response => {
             const token = response.data.token;
-            setCookies('token', token)
-            setCookies('id', response.data.id)
+            localStorage.setitem('token', token)
+            localStorage.setitem('id', response.data.id)
             navigate('/monsters')
         }).catch(e => {
             toast.error(e.response.data.message,  {

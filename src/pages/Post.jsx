@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from 'react-cookie'
 import '../styles/post.scss'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,7 +10,6 @@ const Post = () => {
     const [animeName, setAnimeName] = useState("");
     const [animeDescription, setAnimeDescription] = useState("");
     const navigate = useNavigate();
-    const [cookies, setCookie] = useCookies(['token']);
     const handlePost = async () => {
         try {
             if(!animeName || !animeDescription ) {
@@ -32,7 +30,7 @@ const Post = () => {
                 animeDescription,
             }, {
                 headers: {
-                    Authorization: `Bearer ${cookies.token}`,
+                    Authorization: `Bearer ${localStorage.getItem.token}`,
                 }
             })
             
@@ -46,7 +44,7 @@ const Post = () => {
         });
     } 
     
-    navigate('/monster');
+    navigate('/monsters');
 } catch(e) {
     toast.error('Failed to register anime',  {
         position: "top-right",

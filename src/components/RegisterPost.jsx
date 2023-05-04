@@ -1,12 +1,10 @@
 import api from "../services/api";
 import { useState } from 'react';
-import { useCookies } from "react-cookie";
 
 function RegisterPost({ setPosts, posts }) {
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
     const [file, setFile] = useState('')
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
 
     function handleSubmit(e) {
@@ -19,7 +17,7 @@ function RegisterPost({ setPosts, posts }) {
         e.preventDefault()
         api.post('/anime', formData, {
             headers: {
-                'Authorization': `Bearer ${cookies.token}`,
+                'Authorization': `Bearer ${localStorage.getItem.token}`,
                 "Content-Type": 'multipart/form-data'
             }
         })

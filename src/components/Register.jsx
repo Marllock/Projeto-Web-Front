@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useCookies } from 'react-cookie'
 import api from '../services/api'
 import '../styles/modal.scss'
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 function Register({ login }) {
     const [emailInput, setEmailInput] = useState('')
     const [passwordInput, setPasswordInput] = useState('')
-    const [cookies, setCookies] = useCookies();
     const navigate = useNavigate()
 
     function handleSubmit(e) {
@@ -20,8 +18,8 @@ function Register({ login }) {
             password: passwordInput
         }).then(response => {
             const token = response.data.accessToken;
-            setCookies('token', token)
-            setCookies('id', response.data.id)
+            localStorage.setItem('token', token)
+            localStorage.setItem('id', response.data.id)
             navigate('/monsters')
         }).catch((e) => {
             if(e.response.data.statusCode === 409) {
