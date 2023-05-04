@@ -19,7 +19,6 @@ function Register({ login }) {
         }).then(response => {
             const token = response.data.accessToken;
             localStorage.setItem('token', token)
-            localStorage.setItem('id', response.data.id)
             navigate('/monsters')
         }).catch((e) => {
             if(e.response.data.statusCode === 409) {

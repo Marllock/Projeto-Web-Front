@@ -52,9 +52,8 @@ function Login({ login }) {
             email: emailInput,
             password: passwordInput
         }).then(response => {
-            const token = response.data.token;
-            localStorage.setitem('token', token)
-            localStorage.setitem('id', response.data.id)
+            const token = response.data.accessToken;
+            localStorage.setItem('token', token)
             navigate('/monsters')
         }).catch(e => {
             toast.error(e.response.data.message,  {
