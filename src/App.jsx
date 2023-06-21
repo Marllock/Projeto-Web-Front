@@ -8,8 +8,22 @@ import { ToastContainer } from "react-toastify";
 import GlobalStyle from "./styles/global";
 
 function App() {
+  useEffect(() => {
+    socket.connect();
+    socket.on('report', (data) => {
+      if (data && data.message) {
+        console.log(data.message);
+        toast.info(data.message);
+      }
+    });
+
+    return () => {
+      socket.off("reports");
+    };
+  }, []);
   return (
     <div className="App">
+       <ToastContainer />
       <GlobalStyle />
       <Router>
         <Routes>
