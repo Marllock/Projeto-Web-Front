@@ -4,19 +4,21 @@
   "homepage": "https://marllock.github.io/Projeto-Web-Front/",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "axios": "^0.27.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.4.0",
+    "https": "^1.0.0",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.2",
     "sass": "^1.53.0",
-    "styled-components": "^5.3.10",
-    "web-vitals": "^2.1.0"
+    "socket.io-client": "^4.7.0",
+    "styled-components": "^5.3.11",
+    "web-vitals": "^3.3.2"
   },
   "scripts": {
     "start": "set HTTPS=true&react-scripts start",
@@ -45,6 +47,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^5.0.0"
   }
 }
