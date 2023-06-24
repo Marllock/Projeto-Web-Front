@@ -17,7 +17,7 @@ function RegisterPost({ setPosts, posts }) {
         e.preventDefault()
         api.post('/anime', formData, {
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem.token}`,
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 "Content-Type": 'multipart/form-data'
             }
         })
