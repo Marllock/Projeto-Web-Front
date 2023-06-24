@@ -30,12 +30,12 @@ const Post = () => {
                 animeDescription,
             }, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem.token}`,
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
                 }
             })
             
             if(response.status === 201) {
-                toast.success('anime registered successfully', {
+                toast.success('anime request send successfully', {
                     position: "top-right",
                     autoClose: 5000,
                     draggable: false,

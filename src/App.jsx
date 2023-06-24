@@ -14,7 +14,8 @@ import socket from "./services/socket";
 function App() {
   useEffect(() => {
     socket.connect();
-    socket.on('report', (data) => {
+    socket.on('notification', (data) => {
+      console.log(data);
       if (data && data.message) {
         console.log(data.message);
         toast.info(data.message);
@@ -22,7 +23,7 @@ function App() {
     });
 
     return () => {
-      socket.off("reports");
+      socket.off("notification");
     };
   }, []);
   return (
